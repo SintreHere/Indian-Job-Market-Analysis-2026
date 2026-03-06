@@ -5,7 +5,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 This repository contains a full end-to-end data science project on India's technology job market for 2026. Using a dataset of **10,000 curated job listings**, the project explores salary distributions, identifies skill-based pay premiums, and builds predictive models to forecast compensation based on role, experience, location, and technical skills.
 
@@ -13,20 +13,20 @@ The analysis was published as a professional report aimed at providing actionabl
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 india-job-market-2026/
 │
-├── 📓 EDA.ipynb                                          # Full Jupyter Notebook — EDA + ML pipeline
-├── 📊 India_Job_Market_Salary_Trends_2026_CLEAN.csv      # Cleaned dataset (10,000 records)
-├── 📄 India_JobMarket_2026_Report.docx                   # Professional LinkedIn report (Word)
-└── 📖 README.md                                          # You are here
+├──  EDA.ipynb                                          # Full Jupyter Notebook — EDA + ML pipeline
+├──  India_Job_Market_Salary_Trends_2026_CLEAN.csv      # Cleaned dataset (10,000 records)
+├──  India_JobMarket_2026_Report.docx                   # Professional LinkedIn report (Word)
+└──  README.md                                          # You are here
 ```
 
 ---
 
-## 📊 Dataset
+##  Dataset
 
 **File:** `India_Job_Market_Salary_Trends_2026_CLEAN.csv`
 
@@ -44,64 +44,64 @@ india-job-market-2026/
 | `remote_option` | string | Onsite / Hybrid / Remote |
 
 **Stats at a glance:**
-- 🗂️ 10,000 rows · 10 columns · 0 nulls · 0 duplicates
-- 💰 Salary range: ₹4.6 LPA — ₹25.9 LPA
-- 📍 10+ major Indian cities
-- 💼 9 job role categories
+-  10,000 rows · 10 columns · 0 nulls · 0 duplicates
+-  Salary range: ₹4.6 LPA — ₹25.9 LPA
+-  10+ major Indian cities
+-  9 job role categories
 
 ---
 
-## 🔬 Notebook Walkthrough
+##  Notebook Walkthrough
 
 **File:** `EDA.ipynb`
 
 The notebook follows a structured pipeline:
 
-### 1. 📥 Data Loading & Validation
+### 1.  Data Loading & Validation
 - Load CSV, inspect shape and types
 - Confirm zero nulls and zero duplicates
 - Descriptive statistics on numeric columns
 
-### 2. 📈 Salary Distribution Analysis
+### 2.  Salary Distribution Analysis
 - Compute `salary_avg_lpa` as midpoint of min/max ranges converted to LPA
 - Histogram + KDE plot (raw and log-transformed)
 - Skewness check: **0.596** → raw target retained (below log-transform threshold)
 
-### 3. 💼 Role & Location Analysis
+### 3.  Role & Location Analysis
 - Boxplot: salary distribution by job title (sorted by median)
 - Interactive bar chart: median salary by city (Plotly)
 - Key finding: ML Engineers earn **~75% more** than Frontend Developers at the median
 
-### 4. 📉 Experience vs. Salary
+### 4.  Experience vs. Salary
 - Scatter plot coloured by role + OLS trendline
 - Line chart: average salary per experience band, per role
 - Pearson correlation: **0.004** (near-zero — role type dominates over tenure)
 
-### 5. 🛠️ Employment Type & Remote Work
+### 5.  Employment Type & Remote Work
 - Violin plots: salary distribution across Full-time / Contract / Internship
 - Violin plots: Onsite / Hybrid / Remote comparison
 - Remote carries a slight **−0.2 LPA** median discount
 
-### 6. 🧠 Skill Premium Analysis
+### 6.  Skill Premium Analysis
 - Explode multi-skill strings into individual rows
 - Median salary by skill (top 15, filtered to 50+ occurrences)
 - Machine Learning, Kubernetes, and AWS top the skill-premium leaderboard
 
-### 7. 🔧 Feature Engineering
+### 7.  Feature Engineering
 - One-hot encode: `job_title`, `company_name`, `location`, `employment_type`, `remote_option`
 - Binary skill flags for 12 key skills: Python, SQL, AWS, ML, Power BI, Tableau, Node.js, Azure, Docker, React, Java, Kubernetes
 - Final matrix: **10,000 × 43**
 
-### 8. 🤖 Model Building
+### 8.  Model Building
 - Train/test split: 80/20, `random_state=42`
 - StandardScaler fitted on train only
 - Models: Linear Regression, RidgeCV, LassoCV, RandomForestRegressor (200 trees), RF + GridSearchCV
 
-### 9. 📊 Model Evaluation
+### 9.  Model Evaluation
 
 | Model | MAE (LPA) | RMSE (LPA) | R² Score |
 |---|---|---|---|
-| **Lasso (CV)** ⭐ | 2.69 | 3.22 | **0.4506** |
+| **Lasso (CV)**  | 2.69 | 3.22 | **0.4506** |
 | Linear Regression | 2.69 | 3.22 | 0.4501 |
 | Ridge (CV) | 2.69 | 3.22 | 0.4501 |
 | RF Tuned | 2.70 | 3.24 | 0.4445 |
@@ -114,14 +114,14 @@ The notebook follows a structured pipeline:
 - SHAP TreeExplainer beeswarm plot (500-sample subset)
 - Job title features + `skill_machine_learning` + `skill_kubernetes` are top drivers
 
-### 11. 🔮 Salary Projections
+### 11.  Salary Projections
 - 210 future scenarios: 21 experience levels × 10 roles
 - Baseline: Bangalore · TCS · Full-time · Onsite
 - 95% confidence intervals from std across 300 RF estimators
 
 ---
 
-## 📦 Dependencies
+##  Dependencies
 
 ```bash
 pip install pandas numpy matplotlib seaborn plotly scikit-learn shap feature-engine
@@ -135,7 +135,7 @@ pip install pandas numpy matplotlib seaborn plotly scikit-learn shap feature-eng
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ```bash
 # Clone the repo
@@ -149,27 +149,27 @@ pip install -r requirements.txt   # or use the pip install block above
 jupyter notebook EDA.ipynb
 ```
 
-> 💡 If running on **Google Colab**, skip the file upload cell and load the CSV directly:
+>  If running on **Google Colab**, skip the file upload cell and load the CSV directly:
 > ```python
 > df = pd.read_csv('India_Job_Market_Salary_Trends_2026_CLEAN.csv')
 > ```
 
 ---
 
-## 💡 Key Findings
+##  Key Findings
 
 | Finding | Detail |
 |---|---|
-| 🏆 Top-paying role | ML Engineer — ₹17.54 LPA median |
-| 📍 Top-paying city | Bangalore (highest consistent median) |
-| 🛠️ Top-paying skill | Machine Learning |
-| 📉 Experience correlation | ~0.004 (role type dominates over years of tenure) |
-| 🏅 Best ML model | Lasso CV — R² 0.4506, MAE ₹2.69 LPA |
-| 🔮 Fastest growing stage | 3–7 years experience — steepest salary acceleration |
+|  Top-paying role | ML Engineer — ₹17.54 LPA median |
+|  Top-paying city | Bangalore (highest consistent median) |
+|  Top-paying skill | Machine Learning |
+|  Experience correlation | ~0.004 (role type dominates over years of tenure) |
+|  Best ML model | Lasso CV — R² 0.4506, MAE ₹2.69 LPA |
+|  Fastest growing stage | 3–7 years experience — steepest salary acceleration |
 
 ---
 
-## 📄 Report
+##  Report
 
 A fully formatted professional report (`India_JobMarket_2026_Report.docx`) is included, featuring:
 
@@ -182,7 +182,7 @@ A fully formatted professional report (`India_JobMarket_2026_Report.docx`) is in
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
 ![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?logo=pandas)
@@ -193,10 +193,10 @@ A fully formatted professional report (`India_JobMarket_2026_Report.docx`) is in
 
 ---
 
-## 📬 Connect
+##  Connect
 
 Found this analysis useful? Let's connect on LinkedIn!  
-⭐ Star this repo if it helped you understand India's 2026 tech salary landscape.
+Star this repo if it helped you understand India's 2026 tech salary landscape.
 
 ---
 
