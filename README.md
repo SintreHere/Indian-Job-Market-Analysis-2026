@@ -1,4 +1,4 @@
-# 🇮🇳 India Job Market — Salary Trends & Prediction 2026
+# India Job Market — Salary Trends & Prediction 2026
 
 > **Exploratory Data Analysis · Machine Learning · Salary Forecasting**  
 > Uncovering what drives tech compensation across India's top cities, roles, and skill stacks.
